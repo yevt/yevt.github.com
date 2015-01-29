@@ -1,16 +1,24 @@
 {% if site.JB.comments.provider and page.comments != false %}
 
-{% case site.JB.comments.provider %}
-{% when "disqus" %}
-  {% include JB/comments-providers/disqus %}
-{% when "livefyre" %}
-  {% include JB/comments-providers/livefyre %}
-{% when "intensedebate" %}
-  {% include JB/comments-providers/intensedebate %}
-{% when "facebook" %}
-  {% include JB/comments-providers/facebook %}
-{% when "custom" %}
-  {% include custom/comments %}
-{% endcase %}
+<!-- START: Livefyre Embed -->
+<div id="livefyre-comments"></div>
+<script type="text/javascript" src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>
+<script type="text/javascript">
+(function () {
+    var articleId = fyre.conv.load.makeArticleId(null);
+    fyre.conv.load({}, [{
+        el: 'livefyre-comments',
+        network: "livefyre.com",
+        siteId: "370724",
+        articleId: articleId,
+        signed: false,
+        collectionMeta: {
+            articleId: articleId,
+            url: fyre.conv.load.makeCollectionUrl(),
+        }
+    }], function() {});
+}());
+</script>
+<!-- END: Livefyre Embed -->
 
 {% endif %}
